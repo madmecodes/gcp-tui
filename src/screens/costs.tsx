@@ -115,12 +115,14 @@ export function CostsScreen({ active, contentHeight }: CostsScreenProps) {
                     <Text dimColor={i % 2 === 1}>{row.machineType}</Text>
                   </Box>
                   <Box width={12}>
-                    <Text color={row.status === "RUNNING" ? "green" : "red"}>
+                    <Text color={row.status === "RUNNING" ? "green" : "yellow"}>
                       {row.status}
                     </Text>
                   </Box>
                   <Box width={12}>
-                    <Text dimColor={i % 2 === 1}>${row.hourlyRate.toFixed(4)}</Text>
+                    <Text dimColor={row.hourlyRate === 0 || i % 2 === 1}>
+                      {row.hourlyRate > 0 ? `$${row.hourlyRate.toFixed(4)}` : "-"}
+                    </Text>
                   </Box>
                   <Box width={10}>
                     <Text dimColor={i % 2 === 1}>{uptimeStr}</Text>
@@ -151,7 +153,7 @@ export function CostsScreen({ active, contentHeight }: CostsScreenProps) {
       </Box>
 
       <Text dimColor italic>
-        Estimated from running resources. Actual billing may differ.
+        Stopped/terminated VMs: no compute charge, disk charges still apply.
       </Text>
     </Box>
   );

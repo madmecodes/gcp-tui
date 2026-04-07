@@ -73,15 +73,17 @@ export async function fetchPerServerCosts(): Promise<VMCostRow[]> {
       return sum + sizeGB * pricePerGB;
     }, 0);
 
+    const isRunning = vm.status === "RUNNING";
+
     return {
       name: vm.name,
       machineType: type,
       status: vm.status,
-      hourlyRate: spec.hourlyPrice,
+      hourlyRate: isRunning ? spec.hourlyPrice : 0,
       uptimeHours,
       costSoFar,
       monthlyEst,
       diskCostPerMonth,
     };
-  }).sort((a, b) => b.costSoFar - a.costSoFar);
+  }).sort((a, b) => (b.costSoFar + b.diskCostPerMonth) - (a.costSoFar + a.diskCostPerMonth));
 }

@@ -1,0 +1,30 @@
+{
+  "name": "gcp-tui",
+  "version": "0.1.0",
+  "description": "Terminal UI dashboard for monitoring and managing GCP resources",
+  "type": "module",
+  "bin": {
+    "gcp-tui": "./dist/cli.js"
+  },
+  "scripts": {
+    "dev": "tsx src/cli.tsx",
+    "build": "tsup",
+    "typecheck": "tsc --noEmit"
+  },
+  "keywords": ["gcp", "google-cloud", "tui", "terminal", "dashboard", "cli"],
+  "license": "MIT",
+  "dependencies": {
+    "ink": "^6.0.0",
+    "@inkjs/ui": "^2.0.0",
+    "react": "^19.0.0",
+    "@google-cloud/monitoring": "^4.1.0",
+    "meow": "^13.0.0"
+  },
+  "devDependencies": {
+    "@types/react": "^19.0.0",
+    "@types/node": "^22.0.0",
+    "typescript": "^5.7.0",
+    "tsx": "^4.19.0",
+    "tsup": "^8.3.0"
+  }
+}

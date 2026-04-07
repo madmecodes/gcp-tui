@@ -8,6 +8,7 @@ import { CostsScreen } from "./screens/costs.js";
 import { KeysScreen } from "./screens/keys.js";
 import { DisksScreen } from "./screens/disks.js";
 import { FirewallScreen } from "./screens/firewall.js";
+import { ImagesScreen } from "./screens/images.js";
 import { MetricsScreen } from "./screens/metrics.js";
 import { getGcloudConfig } from "./data/config.js";
 import { useTerminalSize } from "./hooks/use-terminal-size.js";
@@ -16,7 +17,7 @@ import { fetchVMs } from "./data/vms.js";
 import { fetchDisks } from "./data/disks.js";
 import type { GcloudConfig, TabName } from "./types/index.js";
 
-const TABS: TabName[] = ["VMs", "Costs", "Keys", "Disks", "Firewall", "Metrics"];
+const TABS: TabName[] = ["VMs", "Costs", "Keys", "Disks", "Images", "Firewall", "Metrics"];
 
 // header (3 border lines) + tab bar (3) + content border (2 top/bottom implicit) + key hints (1) + bottom padding
 const CHROME_HEIGHT = 8;
@@ -78,7 +79,7 @@ export function App() {
           <Text />
           <Text><Text bold>q / Ctrl+C</Text>     Quit</Text>
           <Text><Text bold>Tab / Shift+Tab</Text> Cycle tabs</Text>
-          <Text><Text bold>1-6</Text>             Jump to tab</Text>
+          <Text><Text bold>1-7</Text>             Jump to tab</Text>
           <Text><Text bold>r</Text>               Refresh data</Text>
           <Text><Text bold>j/k / arrows</Text>    Navigate rows</Text>
           <Text><Text bold>Enter</Text>           Detail/primary action</Text>
@@ -102,6 +103,7 @@ export function App() {
         {activeTab === "Costs" && <CostsScreen active={activeTab === "Costs"} contentHeight={contentHeight} terminalWidth={columns} />}
         {activeTab === "Keys" && <KeysScreen active={activeTab === "Keys"} />}
         {activeTab === "Disks" && <DisksScreen active={activeTab === "Disks"} />}
+        {activeTab === "Images" && <ImagesScreen active={activeTab === "Images"} />}
         {activeTab === "Firewall" && <FirewallScreen active={activeTab === "Firewall"} />}
         {activeTab === "Metrics" && <MetricsScreen active={activeTab === "Metrics"} config={config} />}
       </Box>

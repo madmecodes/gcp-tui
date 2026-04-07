@@ -169,4 +169,31 @@ export interface Column {
   color?: (value: string, row: Record<string, unknown>) => string | undefined;
 }
 
-export type TabName = "VMs" | "Costs" | "Keys" | "Disks" | "Firewall" | "Metrics";
+export interface MachineImage {
+  name: string;
+  status: string;
+  sourceInstance: string;
+  creationTimestamp: string;
+  totalStorageBytes: string;
+  storageLocations?: string[];
+  sourceInstanceProperties?: {
+    machineType?: string;
+    disks?: {
+      diskSizeGb?: string;
+      diskType?: string;
+    }[];
+  };
+}
+
+export interface MachineImageRow {
+  name: string;
+  status: string;
+  sourceInstance: string;
+  machineType: string;
+  diskSize: string;
+  storageSize: string;
+  location: string;
+  created: string;
+}
+
+export type TabName = "VMs" | "Costs" | "Keys" | "Disks" | "Images" | "Firewall" | "Metrics";

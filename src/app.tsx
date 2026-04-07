@@ -8,6 +8,7 @@ import { CostsScreen } from "./screens/costs.js";
 import { KeysScreen } from "./screens/keys.js";
 import { DisksScreen } from "./screens/disks.js";
 import { FirewallScreen } from "./screens/firewall.js";
+import { BillingScreen } from "./screens/billing.js";
 import { ImagesScreen } from "./screens/images.js";
 import { MetricsScreen } from "./screens/metrics.js";
 import { getGcloudConfig } from "./data/config.js";
@@ -17,7 +18,7 @@ import { fetchVMs } from "./data/vms.js";
 import { fetchDisks } from "./data/disks.js";
 import type { GcloudConfig, TabName } from "./types/index.js";
 
-const TABS: TabName[] = ["VMs", "Costs", "Keys", "Disks", "Images", "Firewall", "Metrics"];
+const TABS: TabName[] = ["VMs", "Costs", "Billing", "Keys", "Disks", "Images", "Firewall", "Metrics"];
 
 // header (3 border lines) + tab bar (3) + content border (2 top/bottom implicit) + key hints (1) + bottom padding
 const CHROME_HEIGHT = 8;
@@ -79,7 +80,7 @@ export function App() {
           <Text />
           <Text><Text bold>q / Ctrl+C</Text>     Quit</Text>
           <Text><Text bold>Tab / Shift+Tab</Text> Cycle tabs</Text>
-          <Text><Text bold>1-7</Text>             Jump to tab</Text>
+          <Text><Text bold>1-8</Text>             Jump to tab</Text>
           <Text><Text bold>r</Text>               Refresh data</Text>
           <Text><Text bold>j/k / arrows</Text>    Navigate rows</Text>
           <Text><Text bold>Enter</Text>           Detail/primary action</Text>
@@ -101,6 +102,7 @@ export function App() {
       <Box borderStyle="single" borderTop={false} flexDirection="column" flexGrow={1}>
         {activeTab === "VMs" && <VMsScreen active={activeTab === "VMs"} contentHeight={contentHeight} terminalWidth={columns} />}
         {activeTab === "Costs" && <CostsScreen active={activeTab === "Costs"} contentHeight={contentHeight} terminalWidth={columns} />}
+        {activeTab === "Billing" && <BillingScreen active={activeTab === "Billing"} contentHeight={contentHeight} />}
         {activeTab === "Keys" && <KeysScreen active={activeTab === "Keys"} />}
         {activeTab === "Disks" && <DisksScreen active={activeTab === "Disks"} />}
         {activeTab === "Images" && <ImagesScreen active={activeTab === "Images"} />}

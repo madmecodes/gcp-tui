@@ -196,4 +196,28 @@ export interface MachineImageRow {
   created: string;
 }
 
-export type TabName = "VMs" | "Costs" | "Keys" | "Disks" | "Images" | "Firewall" | "Metrics";
+export interface BillingServiceRow {
+  service: string;
+  cost: number;
+  credits: number;
+  net: number;
+}
+
+export interface BillingResourceRow {
+  service: string;
+  resource: string;
+  cost: number;
+}
+
+export interface RealBillingData {
+  available: boolean;
+  setupMessage?: string;
+  byService: BillingServiceRow[];
+  byResource: BillingResourceRow[];
+  totalCost: number;
+  totalCredits: number;
+  periodStart: string;
+  periodEnd: string;
+}
+
+export type TabName = "VMs" | "Costs" | "Billing" | "Keys" | "Disks" | "Images" | "Firewall" | "Metrics";

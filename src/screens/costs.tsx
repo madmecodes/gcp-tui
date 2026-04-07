@@ -153,6 +153,9 @@ export function CostsScreen({ active, contentHeight }: CostsScreenProps) {
       </Box>
 
       <Text dimColor italic>
+        Estimated from resource specs. For real billing data, see the Billing tab (3).
+      </Text>
+      <Text dimColor italic>
         Stopped/terminated VMs: no compute charge, disk charges still apply.
       </Text>
     </Box>
